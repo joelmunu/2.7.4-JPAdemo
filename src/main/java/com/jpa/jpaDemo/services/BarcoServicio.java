@@ -86,7 +86,10 @@ public class BarcoServicio {
 		try {
 			Barco barco = barcoRepositorio.findById(idBarco).get();
 			Socio socio = socioRepositorio.findById(IdSocio).get();
+			List<Barco> barcos = socio.getBarcos();
+			barcos.add(barco);
 			barco.setSocio(socio);
+			socio.setBarcos(barcos);
 			barcoRepositorio.save(barco);
 			return "OK";
 		} catch (Exception e) {
